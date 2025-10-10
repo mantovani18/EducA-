@@ -32,6 +32,55 @@ const professions = [
 		vestibularFocus: ['Matemática', 'Física (opcional)', 'Redação', 'Lógica'],
 		curriculum: ['Programação', 'Estruturas de Dados', 'Algoritmos', 'Sistemas Operacionais', 'Banco de Dados', 'Inteligência Artificial']
 	}
+,
+	{
+		id: 'odontologia',
+		title: 'Odontologia',
+		short: 'Formação para atuação na saúde bucal: prevenção, diagnóstico e tratamento odontológico.',
+		description: 'Curso de Odontologia — duração média 5 anos. Combina teoria e prática em laboratórios e atendimentos clínicos.',
+		vestibularFocus: ['Biologia', 'Química', 'Redação'],
+		curriculum: ['Anatomia Oral', 'Periodontia', 'Prótese Dentária', 'Endodontia', 'Cirurgia Bucomaxilofacial', 'Odontopediatria']
+	},
+	{
+		id: 'psicologia',
+		title: 'Psicologia',
+		short: 'Estudo do comportamento e processos mentais, com aplicações clínicas, organizacionais e educacionais.',
+		description: 'Curso de Psicologia — duração média 5 anos. Envolve teoria, métodos de pesquisa e estágios em diversas áreas de atuação.',
+		vestibularFocus: ['Biologia', 'Filosofia', 'Sociologia', 'Redação'],
+		curriculum: ['Psicologia Geral', 'Psicologia do Desenvolvimento', 'Psicopatologia', 'Psicologia Social', 'Avaliação Psicológica', 'Estágio Supervisionado']
+	},
+	{
+		id: 'enfermagem',
+		title: 'Enfermagem',
+		short: 'Formação para cuidado direto ao paciente e gestão de serviços de enfermagem.',
+		description: 'Curso de Enfermagem — duração média 4-5 anos. Alta demanda no mercado de trabalho e diversidade de áreas de atuação.',
+		vestibularFocus: ['Biologia', 'Química', 'Redação'],
+		curriculum: ['Fundamentos de Enfermagem', 'Semiologia', 'Saúde Coletiva', 'Enfermagem Médico-Cirúrgica', 'Estágio Supervisionado']
+	},
+	{
+		id: 'administracao',
+		title: 'Administração',
+		short: 'Formação em gestão, negócios e processos organizacionais.',
+		description: 'Curso de Administração — duração média 4 anos. Prepara para áreas como finanças, recursos humanos, logística e empreendedorismo.',
+		vestibularFocus: ['Matemática', 'Geografia', 'Atualidades', 'Redação'],
+		curriculum: ['Administração Geral', 'Economia', 'Contabilidade', 'Marketing', 'Gestão de Pessoas', 'Logística']
+	},
+	{
+		id: 'educacao_fisica',
+		title: 'Educação Física',
+		short: 'Formação para atuação em esportes, treinamento e promoção da saúde.',
+		description: 'Curso de Educação Física — duração média 4 anos. Prepara para atuar em escolas, clubes, academias e programas de saúde.',
+		vestibularFocus: ['Biologia', 'Física', 'Redação'],
+		curriculum: ['Cinesiologia', 'Treinamento Desportivo', 'Biomecânica', 'Fisiologia do Exercício', 'Psicologia do Esporte']
+	},
+	{
+		id: 'contabeis',
+		title: 'Ciências Contábeis',
+		short: 'Formação em contabilidade, auditoria e gestão financeira.',
+		description: 'Curso de Ciências Contábeis — duração média 4 anos. Prepara para atuação em empresas, auditorias e serviços contábeis.',
+		vestibularFocus: ['Matemática', 'Atualidades', 'Redação'],
+		curriculum: ['Contabilidade Geral', 'Contabilidade de Custos', 'Auditoria', 'Legislação Tributária', 'Finanças']
+	}
 ];
 
 const listEl = document.getElementById('profession-list');
