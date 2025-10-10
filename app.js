@@ -147,6 +147,180 @@ function showDetails(id){
 	planP.textContent = `Dedique 60-70% do tempo às matérias listadas acima, reserve 20% para redação e 10-20% para revisões e simulados.`;
 	detailsEl.appendChild(planH);
 	detailsEl.appendChild(planP);
+
+	// controls: gerar plano de estudo
+	const ctrlWrap = document.createElement('div');
+	ctrlWrap.style.marginTop = '14px';
+	const label = document.createElement('label');
+	label.textContent = 'Duração do plano: ';
+	label.style.marginRight = '8px';
+	const select = document.createElement('select');
+	[3,6,12].forEach(m => {
+		const opt = document.createElement('option');
+		opt.value = m;
+		opt.textContent = `${m} meses`;
+		if(m===6) opt.selected = true;
+		select.appendChild(opt);
+	});
+	const btn = document.createElement('button');
+	btn.textContent = 'Gerar plano completo';
+	btn.style.marginLeft = '10px';
+	btn.className = 'card';
+	btn.addEventListener('click', ()=> {
+		const months = parseInt(select.value,10);
+		const plan = generateStudyPlan(p, months);
+		renderPlan(plan, months);
+	});
+	ctrlWrap.appendChild(label);
+	ctrlWrap.appendChild(select);
+	ctrlWrap.appendChild(btn);
+	detailsEl.appendChild(ctrlWrap);
+
+	// container for the generated plan
+	const planContainer = document.createElement('div');
+	planContainer.id = 'plan-container';
+	planContainer.style.marginTop = '14px';
+	detailsEl.appendChild(planContainer);
+}
+
+function generateStudyPlan(profession, months=6){
+	// phases: diagnóstico, fundações, prática, simulados, revisão
+	const weeks = months * 4; // approx 4 semanas por mês
+	const subjects = profession.vestibularFocus;
+
+	// percentual allocation (baseline)
+	const alloc = {};
+	const base = Math.floor(80 / subjects.length); // reserve 10-20% for redação/revisão
+	subjects.forEach(s => alloc[s] = base);
+
+	// ensure totals: we'll reserve 15% for redação and 10% revisão if possible
+	const redaoPct = 15;
+	const revisPct = 10;
+
+	// normalize allocation to sum to 100 - redação - revisão
+	const subjectsTotal = 100 - redaoPct - revisPct;
+	const sumBase = subjects.length * base;
+	const scale = subjectsTotal / (sumBase || 1);
+	subjects.forEach(s => alloc[s] = Math.max(5, Math.round(alloc[s] * scale)));
+
+	// build weekly plan outline
+	const plan = {
+		profession: profession.title,
+		months,
+		weeks,
+		phases: []
+	};
+
+	// diagnóstico (1 semana)
+	plan.phases.push({
+		title: 'Diagnóstico e organização',
+		durationWeeks: 1,
+		goals: ['Avaliar seu nível por matéria (simulado curto)', 'Montar rotina de estudo', 'Definir metas semanais e material']
+	});
+
+	// fundações (50% of weeks)
+	const foundationWeeks = Math.max(2, Math.floor(weeks * 0.5));
+	plan.phases.push({
+		title: 'Fundações (conteúdo principal)',
+		durationWeeks: foundationWeeks,
+		goals: subjects.map(s => `Estudar conceitos fundamentais de ${s}`),
+		weeklyRoutine: subjects.map(s => ({subject: s, percent: alloc[s]}))
+	});
+
+	// redação contínua
+	const redacaoWeeks = Math.max(2, Math.floor(weeks * 0.15));
+	plan.phases.push({
+		title: 'Prática de Redação',
+		durationWeeks: redacaoWeeks,
+		goals: ['Produzir redações semanais com correção', 'Aprender estrutura e repertório', 'Simular tempo de prova']
+	});
+
+	// prática e exercícios (30% weeks)
+	const practiceWeeks = Math.max(2, Math.floor(weeks * 0.25));
+	plan.phases.push({
+		title: 'Prática intensiva e resolução de questões',
+		durationWeeks: practiceWeeks,
+		goals: ['Resolver questões por assunto', 'Fazer listas de erros e revisar diariamente', 'Treinar tempo por questão']
+	});
+
+	// simulados e revisão final (remaining weeks)
+	const used = 1 + foundationWeeks + redacaoWeeks + practiceWeeks;
+	const remaining = Math.max(1, weeks - used);
+	plan.phases.push({
+		title: 'Simulados e revisão final',
+		durationWeeks: remaining,
+		goals: ['Fazer simulados completos a cada 1-2 semanas', 'Revisar pontos fracos', 'Gerir sono e alimentação pré-prova']
+	});
+
+	// weekly sample template
+	plan.sampleWeek = function(weekIndex){
+		return subjects.map(s => `${alloc[s]}% estudo: ${s}`)
+			.concat([`${redaoPct}%: Redação`, `${revisPct}%: Revisões e simulados curtos`]);
+	};
+
+	return plan;
+}
+
+function renderPlan(plan, months){
+	const container = document.getElementById('plan-container');
+	container.innerHTML = '';
+	const h = document.createElement('h3');
+	h.textContent = `Plano de estudo completo — ${plan.profession} (${plan.months} meses)`;
+	container.appendChild(h);
+
+	plan.phases.forEach(ph => {
+		const sec = document.createElement('section');
+		sec.style.marginTop = '10px';
+		const th = document.createElement('h4');
+		th.textContent = `${ph.title} — ${ph.durationWeeks} semana(s)`;
+		sec.appendChild(th);
+		if(ph.goals){
+			const ul = document.createElement('ul');
+			ph.goals.forEach(g => { const li = document.createElement('li'); li.textContent = g; ul.appendChild(li); });
+			sec.appendChild(ul);
+		}
+		if(ph.weeklyRoutine){
+			const p = document.createElement('p');
+			p.className = 'muted';
+			p.textContent = 'Rotina sugerida por matéria:';
+			sec.appendChild(p);
+			const wrap = document.createElement('div');
+			ph.weeklyRoutine.forEach(r => {
+				const chip = document.createElement('span');
+				chip.className = 'chip';
+				chip.textContent = `${r.subject} — ${r.percent}%`;
+				wrap.appendChild(chip);
+			});
+			sec.appendChild(wrap);
+		}
+		container.appendChild(sec);
+	});
+
+	// sample weekly schedule
+	const sample = document.createElement('div');
+	sample.style.marginTop = '12px';
+	const sh = document.createElement('h4');
+	sh.textContent = 'Exemplo de semana (divisão diária)';
+	sample.appendChild(sh);
+	const days = ['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'];
+	const ul = document.createElement('ul');
+	for(let d=0; d<7; d++){
+		const li = document.createElement('li');
+		li.textContent = `${days[d]}: 2h matéria principal / 1h exercício / 30-60min redação ou revisão`;
+		ul.appendChild(li);
+	}
+	sample.appendChild(ul);
+	container.appendChild(sample);
+
+	// tips
+	const tips = document.createElement('div');
+	tips.style.marginTop = '12px';
+	const th = document.createElement('h4'); th.textContent = 'Dicas finais';
+	tips.appendChild(th);
+	const tlist = document.createElement('ul');
+	['Durma bem e mantenha alimentação saudável','Faça simulados cronometrados regularmente','Revise erros com foco','Mantenha constância: pequenas metas diárias são melhores que longas sessões esporádicas'].forEach(t => { const li = document.createElement('li'); li.textContent = t; tlist.appendChild(li); });
+	tips.appendChild(tlist);
+	container.appendChild(tips);
 }
 
 function init(){
