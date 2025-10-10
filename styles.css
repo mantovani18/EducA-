@@ -1,0 +1,40 @@
+:root{
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --accent:#2b7cff;
+  --muted:#6b7280;
+}
+html,body{height:100%;}
+body{font-family:Segoe UI, Roboto, sans-serif;margin:0;background:var(--bg);color:#111}
+header{background:linear-gradient(90deg,var(--accent),#3aa0ff);color:white;padding:28px 20px}
+header h1{margin:0 0 4px}
+header p{margin:0;opacity:.95}
+main{max-width:900px;margin:24px auto;padding:0 16px}
+.card{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 4px 14px rgba(16,24,40,0.06);margin-bottom:16px}
+.age-buttons{display:flex;flex-wrap:wrap;gap:10px}
+.age-buttons button{flex:1 1 180px;padding:12px;border-radius:8px;border:1px solid #e6eefc;background:linear-gradient(180deg,#fff,#f6fbff);cursor:pointer}
+.age-buttons button:hover{transform:translateY(-2px)}
+.hidden{display:none}
+#back{background:transparent;border:0;color:var(--accent);cursor:pointer;margin-bottom:8px}
+#lessons ul{padding-left:20px}
+.activity{margin-top:12px}
+.quiz-option{display:block;padding:10px;border-radius:8px;border:1px solid #e6eefc;margin:8px 0;cursor:pointer;background:#fff}
+.quiz-option.correct{border-color:green;background:#ecffef}
+.quiz-option.wrong{border-color:#ff4d4f;background:#fff0f0}
+footer{max-width:900px;margin:8px auto;padding:8px 16px;color:var(--muted);font-size:13px}
+@media (max-width:520px){.age-buttons button{flex:1 1 120px}}
+.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+/* Builder styles */
+.builder{display:flex;gap:18px;align-items:flex-start}
+.components{width:220px;border:1px dashed #dbeafe;padding:10px;border-radius:8px;background:#fbfdff}
+.component{padding:8px;border-radius:6px;border:1px solid #e6eefc;margin:8px 0;background:white;cursor:grab}
+.component[aria-grabbed='true']{opacity:.7}
+.pc-skeleton{flex:1;min-height:300px;border:1px dashed #e6eefc;padding:12px;border-radius:8px;background:#fff}
+.slot{min-height:38px;border:1px dashed #eef2ff;border-radius:6px;padding:6px;margin:8px 0;display:flex;align-items:center;justify-content:space-between;background:#fbfdff}
+.slot.correct{border-color:green;background:#ecffef}
+.slot.wrong{border-color:#ffb8b8;background:#fff5f5}
+#pc-skeleton{display:flex;flex-direction:column;gap:6px}
+.slot-desc{flex:1;text-align:right;padding-right:8px;color:#0f172a}
+#builder-feedback{margin-top:8px;color:#064e3b}
+#reset-builder{margin-top:10px;background:linear-gradient(180deg,#fff,#f6fbff);border:1px solid #e6eefc;padding:8px;border-radius:8px}

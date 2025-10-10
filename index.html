@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EducaA+ - Aprenda Tecnologia por Idade</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>EducaA+</h1>
+    <p>Aprenda tecnologia de forma prática e segura — conteúdo personalizado por idade.</p>
+  </header>
+  <main>
+    <section id="age-select" class="card">
+      <h2>Escolha sua faixa etária</h2>
+      <div class="age-buttons">
+        <button data-age="child">Criança (<=12)</button>
+        <button data-age="teen">Adolescente (13-19)</button>
+        <button data-age="adult">Adulto (20-59)</button>
+        <button data-age="senior">Idoso (60+)</button>
+      </div>
+    </section>
+
+    <section id="content" class="card hidden">
+      <button id="back">← Voltar</button>
+      <h2 id="content-title">Conteúdo</h2>
+      <div id="lessons"></div>
+      <div id="activity" class="activity"></div>
+    </section>
+
+    <section id="quiz-area" class="card hidden">
+      <h3 id="quiz-title">Quiz</h3>
+      <div id="quiz-question"></div>
+      <div id="quiz-options"></div>
+      <div id="quiz-feedback"></div>
+      <button id="next-quiz" class="hidden">Próxima</button>
+    </section>
+
+    <section id="builder-area" class="card hidden">
+      <h3 id="builder-title">Atividade prática: Montagem de Computador</h3>
+      <p id="builder-instructions">Arraste os componentes para o local correto. Dica: cada faixa etária tem instruções diferentes.</p>
+      <div id="builder" class="builder">
+        <div id="components" class="components" aria-label="Lista de componentes">
+          <!-- componentes serão renderizados por JS -->
+        </div>
+        <div id="pc-skeleton" class="pc-skeleton" aria-label="Chassi do computador">
+          <!-- slots serão renderizados dinamicamente pelo JS -->
+        </div>
+      </div>
+      <div id="builder-feedback"></div>
+      <button id="reset-builder">Reiniciar atividade</button>
+    </section>
+  </main>
+
+  <footer>
+    <small>EducaA+ — projeto educacional. Não substitui orientação profissional.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
