@@ -1,62 +1,44 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>EducaA+ - Aprenda Tecnologia por Idade</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header>
-    <h1>EducaA+</h1>
-    <p>Aprenda tecnologia de forma prática e segura — conteúdo personalizado por idade.</p>
-  </header>
-  <main>
-    <section id="age-select" class="card">
-      <h2>Escolha sua faixa etária</h2>
-      <div class="age-buttons">
-        <button data-age="child">Criança (<=12)</button>
-        <button data-age="teen">Adolescente (13-19)</button>
-        <button data-age="adult">Adulto (20-59)</button>
-        <button data-age="senior">Idoso (60+)</button>
-      </div>
-    </section>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>EducA+ — Guia para pré-vestibulandos</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<header class="site-header">
+			<div class="container">
+				<h1 class="logo">EducA+</h1>
+				<p class="tagline">Escolha sua profissão e veja o que estudar para passar no vestibular</p>
+			</div>
+		</header>
 
-    <section id="content" class="card hidden">
-      <button id="back">← Voltar</button>
-      <h2 id="content-title">Conteúdo</h2>
-      <div id="lessons"></div>
-      <div id="activity" class="activity"></div>
-    </section>
+		<main class="container main-grid">
+			<section class="left-panel">
+				<div class="controls">
+					<input id="search" type="search" placeholder="Pesquisar profissão ou curso..." aria-label="Pesquisar profissão" />
+				</div>
+				<div id="profession-list" class="cards" role="list">
+					<!-- Cards serão renderizados pelo JavaScript -->
+				</div>
+			</section>
 
-    <section id="quiz-area" class="card hidden">
-      <h3 id="quiz-title">Quiz</h3>
-      <div id="quiz-question"></div>
-      <div id="quiz-options"></div>
-      <div id="quiz-feedback"></div>
-      <button id="next-quiz" class="hidden">Próxima</button>
-    </section>
+			<aside id="details" class="right-panel" aria-live="polite">
+				<div class="empty">
+					<h2>Comece escolhendo uma profissão</h2>
+					<p>Ao selecionar uma profissão, você verá: descrição do curso, matérias que deve focar para o vestibular e o currículo do curso.</p>
+				</div>
+			</aside>
+		</main>
 
-    <section id="builder-area" class="card hidden">
-      <h3 id="builder-title">Atividade prática: Montagem de Computador</h3>
-      <p id="builder-instructions">Arraste os componentes para o local correto. Dica: cada faixa etária tem instruções diferentes.</p>
-      <div id="builder" class="builder">
-        <div id="components" class="components" aria-label="Lista de componentes">
-          <!-- componentes serão renderizados por JS -->
-        </div>
-        <div id="pc-skeleton" class="pc-skeleton" aria-label="Chassi do computador">
-          <!-- slots serão renderizados dinamicamente pelo JS -->
-        </div>
-      </div>
-      <div id="builder-feedback"></div>
-      <button id="reset-builder">Reiniciar atividade</button>
-    </section>
-  </main>
+		<footer class="site-footer">
+			<div class="container">
+				<small>© EducA+ — Sugestões de estudo para pré-vestibulandos</small>
+			</div>
+		</footer>
 
-  <footer>
-    <small>EducaA+ — projeto educacional. Não substitui orientação profissional.</small>
-  </footer>
-
-  <script src="app.js"></script>
-</body>
+		<script src="java.js"></script>
+	</body>
 </html>
+
