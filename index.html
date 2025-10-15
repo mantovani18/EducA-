@@ -1,36 +1,62 @@
 <!doctype html>
 <html lang="pt-BR">
 	<head>
-		<meta charset="utf-8" />
+			<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>EducA+ — Guia para pré-vestibulandos</title>
-		<link rel="stylesheet" href="style.css" />
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+			<link rel="stylesheet" href="style.css" />
+			<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect rx='12' width='64' height='64' fill='%232b6cb0'/%3E%3Ctext x='50%25' y='54%25' font-size='36' text-anchor='middle' fill='white' font-family='Roboto Slab'%3EE+%3C/text%3E%3C/svg%3E" />
+			<meta name="theme-color" content="#2b6cb0">
 	</head>
 	<body>
 		<header class="site-header">
 			<div class="container">
-				<h1 class="logo">EducA+</h1>
-				<p class="tagline">Escolha sua profissão e veja o que estudar para passar no vestibular</p>
+					<div class="brand">
+						<img src="logo.png" alt="Logo EducA+" class="brand-img" />
+						<div>
+							<h1 class="logo">EducA+</h1>
+							<p class="tagline">Guia para pré-vestibulandos — escolha sua profissão</p>
+						</div>
+					</div>
 			</div>
 		</header>
 
 		<main class="container main-grid">
-			<section class="left-panel">
-				<div class="controls">
-					<input id="search" type="search" placeholder="Pesquisar profissão ou curso..." aria-label="Pesquisar profissão" />
-				</div>
-				<div id="profession-list" class="cards" role="list">
-					<!-- Cards serão renderizados pelo JavaScript -->
-				</div>
-			</section>
+					<section class="left-panel">
+						<div class="controls">
+							<input id="search" type="search" placeholder="Pesquisar profissão ou curso..." aria-label="Pesquisar profissão" />
+						</div>
+						<div class="profession-list-scroll">
+							<div id="profession-list" class="cards" role="list">
+								<!-- Cards serão renderizados pelo JavaScript -->
+							</div>
+						</div>
+					</section>
 
-			<aside id="details" class="right-panel" aria-live="polite">
-				<div class="empty">
-					<h2>Comece escolhendo uma profissão</h2>
-					<p>Ao selecionar uma profissão, você verá: descrição do curso, matérias que deve focar para o vestibular e o currículo do curso.</p>
-				</div>
-			</aside>
+					<aside id="details" class="right-panel" aria-live="polite">
+						<div class="details-sticky">
+							<div class="empty">
+								<h2>Comece escolhendo uma profissão</h2>
+								<p>Ao selecionar uma profissão, você verá: descrição do curso, matérias que deve focar para o vestibular e o currículo do curso.</p>
+							</div>
+						</div>
+					</aside>
 		</main>
+		<!-- full-width area for generated plans (will span across the grid) -->
+		<div id="fullwidth-plan" class="fullwidth-plan" aria-live="polite"></div>
+
+		<section class="about-company">
+			<div class="container">
+				<h3>Sobre a EducA+</h3>
+				<p>A EducA+ é uma iniciativa que ajuda estudantes a escolherem suas carreiras e organizarem sua preparação para vestibulares e concursos. Fornecemos descrições de cursos, prioridades de estudo, planos personalizados e recomendações de materiais e aulas online.</p>
+				<p>Nosso objetivo é tornar a jornada pré-vestibular mais clara e prática — com planos fáceis de seguir, dicas de estudo e recursos confiáveis.</p>
+				<div class="contact">
+					<p>Contato: <a href="tel:+5543996212570">(43) 99621-2570</a> — <a href="mailto:EducA+1@gmail.com">EducA+1@gmail.com</a></p>
+				</div>
+			</div>
+		</section>
 
 		<footer class="site-footer">
 			<div class="container">
